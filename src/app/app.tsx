@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Header } from './components/header/Header';
 import { LeftMenu } from './components/left-menu/LeftMenu';
 import { MailScreen } from './components/mail-screen/MailScreen';
@@ -36,18 +36,48 @@ const possibleIcons = [
 
 const possibleSenders = ['Яндекс.Музыка', 'Яндекс.Мясо', 'Lyft', 'Uber', 'Google'];
 
-const sleep = ms => {
+const sleep = (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms));
 };
 
-const getRand = (from, to) => {
+const getRand = (from: number, to: number) => {
   return Math.floor(Math.random() * (to - from + 1)) + from;
 };
 
-const filterEmails = (emails, currentFolder, filterText, predicate) => {
+export interface DateType {
+  month: string
+  day: number
+}
+
+export interface EmailType {
+  id: number
+  iconUrl: string
+  title: string
+  text: string[]
+  senderName: string
+  date: DateType
+  isUnread: boolean
+  wasShown: boolean
+  display: boolean
+}
+
+interface StateType {
+  filterText: string
+  allSelected: boolean
+  folder: string
+  deleteSelected: boolean
+  emails: EmailType[]
+}
+
+const filterEmails = (
+  emails: any[],
+  currentFolder: string,
+  filterText: string,
+  predicate: ((email: EmailType) => void) | undefined = undefined
+) => {
   let shownEmails = 0;
-  const filteredEmails = [];
-  const fullPredicate = email => {
+  const filteredEmails: EmailType[] = [];
+  const fullPredicate = (email: any) => {
     // Folder filter
     if (currentFolder === FOLDER_READ && email.isUnread) {
       return false;
@@ -69,6 +99,7 @@ const filterEmails = (emails, currentFolder, filterText, predicate) => {
     return true;
   };
   emails.forEach(email => {
+    //@ts-ignore-next-line
     const newEmail = Object.assign({}, email);
     if (fullPredicate(newEmail) && shownEmails < MAX_EMAILS_PER_PAGE) {
       newEmail.display = true;
@@ -82,8 +113,8 @@ const filterEmails = (emails, currentFolder, filterText, predicate) => {
   return filteredEmails;
 };
 
-export class App extends Component {
-  constructor(props) {
+export class App extends React.Component<any, StateType> {
+  constructor(props: Readonly<any>) {
     super(props);
 
     this.state = {
@@ -132,9 +163,9 @@ export class App extends Component {
     this.runNewEmailGeneration();
   }
 
-  onFilterTextChange(filterTextEvent) {
+  onFilterTextChange(filterTextEvent: any) {
     const filterText = filterTextEvent.target.value;
-    this.setState(prevState => {
+    this.setState((prevState: Readonly<StateType>) => {
       return {
         filterText,
         emails: filterEmails(prevState.emails, prevState.folder, filterText)
@@ -168,7 +199,7 @@ export class App extends Component {
     const day = getRand(1, 28);
     const month = possibleMonths[getRand(0, possibleMonths.length - 1)];
 
-    this.setState(prevState => {
+    this.setState((prevState: Readonly<StateType>) => {
       return {
         filterText: '',
         emails: filterEmails(
@@ -196,9 +227,9 @@ export class App extends Component {
     });
   };
 
-  handleEmailsRemoval(indices, cb) {
-    this.setState(prevState => {
-      const newEmails = prevState.emails
+  handleEmailsRemoval(indices: { [key: number]: boolean }, cb: () => void) {
+    this.setState((prevState: Readonly<StateType>) => {
+      const newEmails: any[] = prevState.emails
         .map(email => {
           if (indices[email.id] !== true) {
             return email;
@@ -221,8 +252,8 @@ export class App extends Component {
     });
   }
 
-  markAsRead(id) {
-    this.setState(prevState => {
+  markAsRead(id: number) {
+    this.setState((prevState: Readonly<StateType>) => {
       const newEmails = prevState.emails.map(email => {
         if (email.id !== id) {
           return email;
@@ -237,7 +268,7 @@ export class App extends Component {
   }
 
   showInbox() {
-    this.setState(prevState => {
+    this.setState((prevState: Readonly<StateType>) => {
       return {
         folder: FOLDER_INBOX,
         emails: filterEmails(prevState.emails, FOLDER_INBOX, prevState.filterText)
@@ -246,7 +277,7 @@ export class App extends Component {
   }
 
   showRead() {
-    this.setState(prevState => {
+    this.setState((prevState: Readonly<StateType>) => {
       return {
         folder: FOLDER_READ,
         emails: filterEmails(prevState.emails, FOLDER_READ, prevState.filterText)
@@ -256,7 +287,7 @@ export class App extends Component {
 
   newMessagesAnimated() {
     if (this.state.folder === FOLDER_INBOX) {
-      this.setState(prevState => {
+      this.setState((prevState: Readonly<StateType>) => {
         return {
           emails: prevState.emails.map(email => {
             return {
@@ -269,7 +300,7 @@ export class App extends Component {
     }
   }
 
-  setNewAllSelected(allSelected) {
+  setNewAllSelected(allSelected: boolean) {
     this.setState({ allSelected });
   }
 

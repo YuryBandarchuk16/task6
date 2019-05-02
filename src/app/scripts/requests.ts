@@ -5,14 +5,14 @@ export const HTTPRequests = {
   POST: 'POST'
 };
 
-export const getProxiedUrl = (url /* string */) => {
+export const getProxiedUrl = (url: string) => {
   return `${PROXY_URL}/${url}`;
 };
 
 export const makeRequest = async (
-  url /* : string */,
-  method /* : string */,
-  errorHandler /* : (error) => void */
+  url: string,
+  method: string,
+  errorHandler: ((error: any) => void) | undefined
 ) => {
   try {
     return await fetch(getProxiedUrl(url), { method });
@@ -25,9 +25,14 @@ export const makeRequest = async (
   }
 };
 
-export const fetchJSON = async (url /* : string */, errorHandler /* : (error) => void */) => {
+export const fetchJSON = async (
+  url: string ,
+  errorHandler: ((error: any) => void) | undefined = undefined
+) => {
   try {
     const response = await makeRequest(url, HTTPRequests.GET, errorHandler);
+    if (!response) throw {};
+
     const result = await response.json();
     return result;
   } catch (ignored) {

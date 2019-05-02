@@ -1,8 +1,16 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import '../../styles/mail-screen/MailNavigation.css';
 
-export class MailNavigation extends Component {
+interface PropsType {
+  isSelected: boolean
+  onSelectAll: () => void
+  onDelete: () => void
+  showInbox: () => void
+  showRead: () => void
+}
+
+export class MailNavigation extends React.Component<PropsType> {
   render() {
     return (
       <div className="mail-navigation-wrapper">

@@ -1,6 +1,13 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
-export class MenuAction extends Component {
+interface PropsType {
+  isSelected: boolean
+  fragment: string
+  title: string
+  onClick: () => void
+}
+
+export class MenuAction extends React.Component<PropsType> {
   render() {
     const ifSelectedClassName = this.props.isSelected ? 'selected-menu-action' : '';
     return (

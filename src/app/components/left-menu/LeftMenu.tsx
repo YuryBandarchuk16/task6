@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { MenuAction } from './MenuAction';
 import { NewMessageButton } from './NewMessageButton';
 
@@ -17,8 +17,16 @@ const actions = [
   }
 ];
 
-export class LeftMenu extends Component {
-  constructor(props) {
+interface PropsType {
+  generateNewEMail: () => void
+}
+
+interface StateType {
+  currentlySelectedActionID: number
+}
+
+export class LeftMenu extends React.Component<PropsType, StateType> {
+  constructor(props: PropsType) {
     super(props);
 
     this.state = {
@@ -26,7 +34,7 @@ export class LeftMenu extends Component {
     };
   }
 
-  selectAction(selectedActionId /* :number */) {
+  selectAction(selectedActionId: number) {
     this.setState({
       currentlySelectedActionID: selectedActionId
     });

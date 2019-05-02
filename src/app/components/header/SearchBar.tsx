@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import '../../styles/header/SearchBar.css';
 
-export class SearchBar extends Component {
+interface PropsType {
+  filterText: string
+  onFilterChange: (event: any) => void
+}
+
+export class SearchBar extends React.Component<PropsType> {
   render() {
     return (
       <div className="search-bar-container">

@@ -1,15 +1,33 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import { EMail } from './EMail';
 import { MailNavigation } from './MailNavigation';
+import { EmailType } from '../../app';
 
-const getSelectedEmailsCount = selectedEmailsStatus => {
+const getSelectedEmailsCount = (selectedEmailsStatus: { [key: string]: any; }) => {
   return Object.keys(selectedEmailsStatus).filter(emailID => !!selectedEmailsStatus[emailID])
     .length;
 };
 
-export class EmailsList extends Component {
-  constructor(props) {
+interface PropsType {
+  emails: EmailType[]
+  allSelected: boolean
+  deleteSelected: boolean
+  showInbox: () => void
+  showRead: () => void
+  newMessagesAnimated: () => void
+  deleteSelectedClicked: () => void
+  onOpenEmail: (emailID: number, text: string[]) => void
+  setNewAllSelected: (newSelectedValue: boolean) => void
+  handleEmailsRemoval: (selectedEmailsIDs: { [key: string]: any }, cb: () => void) => void
+}
+
+interface StateType {
+  selectedEmailsIDs: { [key: string]: any; }
+}
+
+export class EmailsList extends React.Component<PropsType, StateType> {
+  constructor(props: PropsType) {
     super(props);
 
     this.state = {
@@ -27,7 +45,7 @@ export class EmailsList extends Component {
     }
   }
 
-  onCheckboxChange(index, newSelectedValue) {
+  onCheckboxChange(index: number, newSelectedValue: boolean) {
     this.setState(prevState => {
       const newSelectedEmails = prevState.selectedEmailsIDs;
       newSelectedEmails[index] = newSelectedValue;
@@ -46,7 +64,7 @@ export class EmailsList extends Component {
   selectAllClicked() {
     const allSelected = !this.props.allSelected;
 
-    const selectedEmailsIDs = {};
+    const selectedEmailsIDs: { [key: string]: boolean } = {};
     if (allSelected) {
       this.props.emails.forEach(email => {
         if (email.display) {
@@ -90,7 +108,7 @@ export class EmailsList extends Component {
         .map(email => {
           return email.wasShown ? 0 : 1;
         })
-        .reduce((prev, cur) => prev + cur, 0) > 0
+        .reduce((prev: number, cur: number) => prev + cur, 0) > 0
     ) {
       setTimeout(() => {
         this.props.newMessagesAnimated();
@@ -107,7 +125,7 @@ export class EmailsList extends Component {
           showRead={this.props.showRead}
         />
         <section className="mail-emails">
-          {this.props.emails.map(email => {
+          {this.props.emails.map((email: EmailType) => {
             return (
               <EMail
                 animateAppearance={!email.wasShown}

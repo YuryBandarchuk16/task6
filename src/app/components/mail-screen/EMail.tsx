@@ -1,8 +1,26 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import '../../styles/mail-screen/EMail.css';
+import { EmailType } from '../../app';
 
-export class EMail extends Component {
+interface PropsType  {
+  isUnread: boolean
+  display: boolean
+  iconUrl: string
+  senderName: string
+  title: string
+  text: string[]
+  removingSelected: boolean
+  isSelected: boolean
+  animateAppearance: boolean
+  dateMonth: string
+  dateDay: number
+  emailID: number
+  onCheckboxChange: (emailID: number, isSelected: boolean) => void
+  onOpenEmail: (emailID: number, text: string[]) => void
+}
+
+export class EMail extends React.Component<PropsType> {
   getMainClassName() {
     const classNames = ['email'];
 

@@ -1,13 +1,32 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import { Footer } from './Footer';
 import { EmailsList } from './EmailsList';
 import { OpenedEmail } from './OpenedEmail';
+import { EmailType } from '../../app';
 
 import '../../styles/mail-screen/MailScreen.css';
 
-export class MailScreen extends Component {
-  constructor(props) {
+interface PropsType {
+  markAsRead: (emailID: number) => void
+  emails: EmailType[]
+  allSelected: boolean
+  deleteSelected: boolean
+  showInbox: () => void
+  showRead: () => void
+  newMessagesAnimated: () => void
+  deleteSelectedClicked: () => void
+  setNewAllSelected: (newSelectedValue: boolean) => void
+  handleEmailsRemoval: (selectedEmailsIDs: { [key: string]: any }, cb: () => void) => void
+}
+
+interface StateType {
+  openedEmailId: number | null
+  openedEmailText: string[] | null
+}
+
+export class MailScreen extends React.Component<PropsType, StateType> {
+  constructor(props: PropsType) {
     super(props);
 
     this.state = {
@@ -17,14 +36,14 @@ export class MailScreen extends Component {
   }
 
   onCloseOpenedEmailClick() {
-    this.props.markAsRead(this.state.openedEmailId);
+    this.props.markAsRead(this.state.openedEmailId!);
     this.setState({
       openedEmailId: null,
       openedEmailText: null
     });
   }
 
-  onOpenEmail(id, text) {
+  onOpenEmail(id: number, text: string[]) {
     this.setState({
       openedEmailId: id,
       openedEmailText: text
@@ -40,7 +59,6 @@ export class MailScreen extends Component {
           deleteSelectedClicked={this.props.deleteSelectedClicked}
           deleteSelected={this.props.deleteSelected}
           newMessagesAnimated={this.props.newMessagesAnimated}
-          animateID={this.props.animateID}
           onOpenEmail={this.onOpenEmail.bind(this)}
           showInbox={this.props.showInbox}
           showRead={this.props.showRead}

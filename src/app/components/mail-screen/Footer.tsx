@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import * as React from 'react';
 
 import '../../styles/mail-screen/Footer.css';
 
-export class Footer extends PureComponent {
+export class Footer extends React.PureComponent {
   render() {
     return (
       <footer className="mail-footer">

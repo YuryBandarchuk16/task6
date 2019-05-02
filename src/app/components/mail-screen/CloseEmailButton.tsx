@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import '../../styles/mail-screen/CloseEMail.css';
 
-export class CloseEmailButton extends Component {
+interface PropsType {
+  onClick: () => void
+}
+
+export class CloseEmailButton extends React.Component<PropsType> {
   render() {
     return (
       <button type="button" onClick={this.props.onClick} className="close-email">

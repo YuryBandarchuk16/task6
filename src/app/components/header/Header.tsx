@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { SearchBar } from './SearchBar';
 
 import '../../styles/header/Header.css';
 
-export class Header extends Component {
+interface PropsType {
+  filterText: string
+  onFilterChange: (event: any) => void
+}
+
+export class Header extends React.Component<PropsType> {
   render() {
     return (
       <header className="header">
