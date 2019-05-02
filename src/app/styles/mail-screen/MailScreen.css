@@ -1,0 +1,62 @@
+.mail-screen {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  word-wrap: break-word;
+  border-radius: 3px;
+  box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.34);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #ffffff;
+  overflow-y: scroll;
+}
+
+.mail-screen__checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  margin-left: 20px;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+}
+
+.mail-navigation__nav-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ccc;
+  white-space: nowrap;
+}
+
+.mail-emails {
+  width: 100%;
+  display: inline-block;
+}
+
+.mail-screen-element-wrapper {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.content__mail-screen-and-footer {
+  display: inline-block;
+  margin-left: 22px;
+  width: calc(100% - 178px);
+  height: 100%;
+  margin-bottom: 14px;
+}
+
+@media screen and (min-width: 2400px) {
+  .mail-screen__checkbox {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.link-without-style {
+  color: inherit;
+  text-decoration: inherit;
+}

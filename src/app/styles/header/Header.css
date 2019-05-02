@@ -1,0 +1,27 @@
+.hamburger {
+  padding-top: 15px;
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.hamburger__img {
+  width: 25px;
+  height: 25px;
+  content: url('../../images/hamburger.svg');
+}
+
+.header__mlogo {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 12px;
+  margin-left: 31px;
+  height: 31px;
+  width: 153px;
+  background: #ccc;
+  content: url('../../images/mail_logo.png');
+}
