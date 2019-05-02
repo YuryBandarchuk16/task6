@@ -1,11 +1,12 @@
 import * as React from 'react';
+import cx from 'classnames';
 
-import '../../styles/left-menu/NewMessageButton.css';
+import styles from '../../styles/left-menu/NewMessageButton.module.css';
 
 export class NewMessageButton extends React.PureComponent {
   render() {
     return (
-      <button type="button" className="new-message-btn pressable-button">
+      <button type="button" className={cx(styles.newMessageBtn, styles.pressableButton)}>
         Написать
       </button>
     );

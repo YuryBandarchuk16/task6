@@ -1,8 +1,9 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { MenuAction } from './MenuAction';
 import { NewMessageButton } from './NewMessageButton';
 
-import '../../styles/left-menu/LeftMenu.css';
+import styles from '../../styles/left-menu/LeftMenu.module.css';
 
 const actions = [
   { title: 'Входящие', fragment: 'inbox' },
@@ -42,19 +43,20 @@ export class LeftMenu extends React.Component<PropsType, StateType> {
 
   render() {
     return (
-      <nav className="left-menu">
+      <nav className={styles.leftMenu}>
         <button
           type="button"
-          className="left-menu__get-new-message-btn pressable-button"
+          className={cx(styles.leftMenu__getNewMessageBtn, styles.pressableButton)}
           onClick={this.props.generateNewEMail}
         >
           Получить письмо
         </button>
         <NewMessageButton />
-        <div className="menu-actions">
+        <div className={styles.menuActions}>
           {actions.map((action, index) => {
             return (
               <MenuAction
+                index={index}
                 title={action.title}
                 isSelected={index === this.state.currentlySelectedActionID}
                 fragment={action.fragment}

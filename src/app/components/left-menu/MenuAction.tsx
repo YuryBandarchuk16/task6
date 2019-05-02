@@ -1,20 +1,29 @@
 import * as React from 'react';
+import cx from 'classnames';
+
+import styles from '../../styles/left-menu/LeftMenu.module.css';
 
 interface PropsType {
   isSelected: boolean
   fragment: string
   title: string
+  index: number
   onClick: () => void
 }
 
 export class MenuAction extends React.Component<PropsType> {
   render() {
-    const ifSelectedClassName = this.props.isSelected ? 'selected-menu-action' : '';
+    const outerWrapperClassName = cx(styles.menuActionWrapper, {
+      [styles.menuActionWrapper_inner]: this.props.index > 0,
+    })
+    const innerWrapperClassName = cx(styles.menuActionWrapper__action, {
+      [styles.selectedMenuAction]: this.props.isSelected,
+    })
     return (
-      <div className="menu-action-wrapper">
-        <div className={`menu-action-wrapper__action ${ifSelectedClassName}`}>
+      <div className={outerWrapperClassName}>
+        <div className={innerWrapperClassName}>
           <a
-            className="menu-action-wrapper__link"
+            className={styles.menuActionWrapper__link}
             href={`#${this.props.fragment}`}
             onClick={this.props.onClick}
           >

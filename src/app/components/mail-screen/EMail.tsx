@@ -1,7 +1,8 @@
 import * as React from 'react';
+import cx from 'classnames';
 
-import '../../styles/mail-screen/EMail.css';
-import { EmailType } from '../../app';
+import styles from '../../styles/mail-screen/EMail.module.css';
+import mailscreenStyles from '../../styles/mail-screen/MailScreen.module.css';
 
 interface PropsType  {
   isUnread: boolean
@@ -22,21 +23,11 @@ interface PropsType  {
 
 export class EMail extends React.Component<PropsType> {
   getMainClassName() {
-    const classNames = ['email'];
-
-    if (this.props.isUnread) {
-      classNames.push('email_unread');
-    }
-
-    if (this.props.removingSelected && this.props.isSelected) {
-      classNames.push('bounceOutRight');
-    }
-
-    if (this.props.animateAppearance) {
-      classNames.push('bounceIn');
-    }
-
-    return classNames.join(' ');
+    return cx(styles.email, {
+      [styles.email_unread]: this.props.isUnread,
+      'bounceOutRight': this.props.removingSelected && this.props.isSelected,
+      'bounceIn': this.props.animateAppearance,
+    })
   }
 
   getWrapperStlye() {
@@ -51,29 +42,37 @@ export class EMail extends React.Component<PropsType> {
 
   render() {
     return (
-      <section className="mail-screen-element-wrapper" style={this.getWrapperStlye()}>
+      <section className={mailscreenStyles.mailScreenElementWrapper} style={this.getWrapperStlye()}>
         <div className={this.getMainClassName()}>
-          <div className="email__mail-date">
+          <div className={styles.email__mailDate}>
             {this.props.dateDay} {this.props.dateMonth}
           </div>
           <input
             type="checkbox"
-            className="mail-screen__checkbox"
+            className={mailscreenStyles.mailScreen__checkbox}
             checked={this.props.isSelected}
             onChange={() => this.props.onCheckboxChange(this.props.emailID, !this.props.isSelected)}
           />
-          <img className="email__sender-photo" src={this.props.iconUrl} alt="sender logo" />
+          <img className={styles.email__senderPhoto} src={this.props.iconUrl} alt="sender logo" />
           <a
             href={`#email_${this.props.emailID}`}
-            className="email__sender-part email__sender-name link-without-style"
+            className={cx(
+              styles.email__senderPart,
+              mailscreenStyles.linkWithoutStyle,
+              styles.email__senderName
+            )}
             onClick={() => this.props.onOpenEmail(this.props.emailID, this.props.text)}
           >
             {this.props.senderName}
           </a>
-          <div className="email__unread-flag" />
+          <div className={styles.email__unreadFlag} />
           <a
             href={`#email_${this.props.emailID}`}
-            className="email__sender-part email__sender-title link-without-style"
+            className={cx(
+              styles.email__senderPart,
+              mailscreenStyles.linkWithoutStyle,
+              styles.email__senderTitle,
+            )}
             onClick={() => this.props.onOpenEmail(this.props.emailID, this.props.text)}
           >
             {this.props.title}

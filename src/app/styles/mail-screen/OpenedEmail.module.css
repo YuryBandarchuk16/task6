@@ -1,4 +1,4 @@
-.content__email-content {
+.content__emailContent {
   padding: 10px;
   display: inline-block;
   position: relative;
@@ -14,6 +14,6 @@
   overflow-y: scroll;
 }
 
-.content__email-text {
+.content__emailText {
   margin-top: 20px;
 }

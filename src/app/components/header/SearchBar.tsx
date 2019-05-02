@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import '../../styles/header/SearchBar.css';
+import styles from '../../styles/header/SearchBar.module.css';
 
 interface PropsType {
   filterText: string
@@ -10,11 +10,11 @@ interface PropsType {
 export class SearchBar extends React.Component<PropsType> {
   render() {
     return (
-      <div className="search-bar-container">
-        <div className="search-bar-container__search-bar-and-close">
+      <div className={styles.searchBarContainer}>
+        <div className={styles.searchBarContainer__searchBarAndClose}>
           <input
             type="search"
-            className="search-bar-container__search-bar"
+            className={styles.searchBarContainer__searchBar}
             placeholder="Поиск"
             value={this.props.filterText}
             onChange={this.props.onFilterChange}

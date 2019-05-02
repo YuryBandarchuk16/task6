@@ -4,6 +4,8 @@ import { EMail } from './EMail';
 import { MailNavigation } from './MailNavigation';
 import { EmailType } from '../../app';
 
+import styles from '../../styles/mail-screen/MailScreen.module.css';
+
 const getSelectedEmailsCount = (selectedEmailsStatus: { [key: string]: any; }) => {
   return Object.keys(selectedEmailsStatus).filter(emailID => !!selectedEmailsStatus[emailID])
     .length;
@@ -116,7 +118,7 @@ export class EmailsList extends React.Component<PropsType, StateType> {
     }
 
     return (
-      <section className="mail-screen">
+      <section className={styles.mailScreen}>
         <MailNavigation
           onSelectAll={this.selectAllClicked.bind(this)}
           isSelected={this.props.allSelected}
@@ -124,7 +126,7 @@ export class EmailsList extends React.Component<PropsType, StateType> {
           showInbox={this.props.showInbox}
           showRead={this.props.showRead}
         />
-        <section className="mail-emails">
+        <section className={styles.mailEmails}>
           {this.props.emails.map((email: EmailType) => {
             return (
               <EMail

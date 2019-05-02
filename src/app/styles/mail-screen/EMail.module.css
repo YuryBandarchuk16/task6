@@ -7,7 +7,7 @@
   border-bottom: solid 1px #e2e2e2;
 }
 
-.email__sender-photo {
+.email__senderPhoto {
   margin-left: 10px;
   display: inline-block;
   vertical-align: middle;
@@ -15,7 +15,7 @@
   border-radius: 50%;
 }
 
-.email__sender-part {
+.email__senderPart {
   display: inline-block;
   vertical-align: middle;
   white-space: nowrap;
@@ -24,17 +24,17 @@
   cursor: pointer;
 }
 
-.email__sender-name {
+.email__senderName {
   font-size: 13px;
   margin-left: 10px;
   width: 25%;
 }
 
-.email_unread .email__sender-name {
+.email_unread .email__senderName {
   font-weight: bold;
 }
 
-.email__unread-flag {
+.email__unreadFlag {
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -44,17 +44,17 @@
   margin-right: 10px;
 }
 
-.email__sender-title {
+.email__senderTitle {
   width: 46%;
   font-size: 13px;
   text-overflow: ellipsis;
 }
 
-.email_unread .email__sender-title {
+.email_unread .email__senderTitle {
   font-weight: bold;
 }
 
-.email__mail-date {
+.email__mailDate {
   position: absolute;
   right: 10px;
   height: 100%;
@@ -65,21 +65,21 @@
   text-align: right;
 }
 
-.email_unread .email__unread-flag {
+.email_unread .email__unreadFlag {
   background-color: #6287bd;
 }
 
 @media screen and (min-width: 1600px) {
-  .email__sender-name {
+  .email__senderName {
     width: 20%;
   }
-  .email__sender-title {
+  .email__senderTitle {
     width: 60%;
   }
 }
 
 @media screen and (min-width: 2400px) {
-  .email__mail-date {
+  .email__mailDate {
     top: 5%;
   }
 }

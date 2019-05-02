@@ -1,4 +1,4 @@
-.mail-footer {
+.mailFooter {
   position: relative;
   margin-top: -5px;
   padding-top: 5px;
@@ -12,14 +12,14 @@
   border-bottom-right-radius: 3px;
 }
 
-.mail-footer__item-link {
+.mailFooter__itemLink {
   outline: none;
   text-decoration: none;
   color: inherit;
   background-color: inherit;
 }
 
-.footer-item {
+.footerItem {
   padding: 21px;
   font-size: 12px;
   font-weight: 400;

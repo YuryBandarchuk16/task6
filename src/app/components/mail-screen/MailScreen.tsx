@@ -5,7 +5,7 @@ import { EmailsList } from './EmailsList';
 import { OpenedEmail } from './OpenedEmail';
 import { EmailType } from '../../app';
 
-import '../../styles/mail-screen/MailScreen.css';
+import styles from '../../styles/mail-screen/MailScreen.module.css';
 
 interface PropsType {
   markAsRead: (emailID: number) => void
@@ -52,7 +52,7 @@ export class MailScreen extends React.Component<PropsType, StateType> {
 
   render() {
     return !this.state.openedEmailText ? (
-      <section className="content__mail-screen-and-footer">
+      <section className={styles.content__mailScreenAndFooter}>
         <EmailsList
           emails={this.props.emails}
           handleEmailsRemoval={this.props.handleEmailsRemoval}

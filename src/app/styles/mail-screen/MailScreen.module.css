@@ -1,4 +1,4 @@
-.mail-screen {
+.mailScreen {
   display: inline-block;
   width: 100%;
   height: 100%;
@@ -11,7 +11,7 @@
   overflow-y: scroll;
 }
 
-.mail-screen__checkbox {
+.mailScreen__checkbox {
   width: 16px;
   height: 16px;
   border-radius: 3px;
@@ -20,7 +20,7 @@
   background-color: #ffffff;
 }
 
-.mail-navigation__nav-btn {
+.mailNavigation__navBtn {
   border: none;
   outline: none;
   cursor: pointer;
@@ -30,18 +30,18 @@
   white-space: nowrap;
 }
 
-.mail-emails {
+.mailEmails {
   width: 100%;
   display: inline-block;
 }
 
-.mail-screen-element-wrapper {
+.mailScreenElementWrapper {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
 
-.content__mail-screen-and-footer {
+.content__mailScreenAndFooter {
   display: inline-block;
   margin-left: 22px;
   width: calc(100% - 178px);
@@ -50,13 +50,13 @@
 }
 
 @media screen and (min-width: 2400px) {
-  .mail-screen__checkbox {
+  .mailScreen__checkbox {
     width: 24px;
     height: 24px;
   }
 }
 
-.link-without-style {
+.linkWithoutStyle {
   color: inherit;
   text-decoration: inherit;
 }
